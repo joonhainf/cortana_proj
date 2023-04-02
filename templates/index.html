@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>This is Cortana, a Worse Version of Whatever you were Thinking</title>
+    <p>This is a paragraph </p>
+    <p>By the way, call me Bill</p>
+</head>
+<body>
+    <form method="POST">
+
+        <input type="text" id="user_input">
+        <button type="submit" onclick="cortana()">Click Me</button>
+    </form>
+    <p id="bot_response"></p>
+    <script>
+        function cortana() {
+            const input = document.getElementById("user_input").value;
+            fetch('/api/cortana' + input)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("bot_response").innerHTML = data.bot_response;
+                });
+            return false;
+        }
+    </script>
+</body>
+</html>
